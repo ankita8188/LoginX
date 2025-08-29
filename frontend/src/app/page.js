@@ -15,7 +15,7 @@ const Page = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/user/login",
+        "https://authflow-kappa.vercel.app/api/v1/user/login",
         { email, password }
       );
 

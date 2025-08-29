@@ -6,7 +6,7 @@ import connection from "./dbconnection.js";
 import { errorMiddleware } from "./middlewares/error.js";
 import userRouter from "./routes/userRouter.js";
 import authRouter from "./routes/authRouter.js";
-import { removeUnverifiedAccounts } from "./auutomation/removeUnverifiedAccounts.js";
+import { removeUnverifiedAccounts } from "./auutomation/removeUnverifiedAccounts.js"; 
 
 // 🟢 IMPORTANT: import passport config here
 import "./passport.js";

@@ -20,7 +20,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/v1/user/register", formData, {
+      await axios.post("https://authflow-kappa.vercel.app/api/v1/user/register", formData, {
         withCredentials: true,
       });
       router.push("/verify-otp"); // ✅ go to OTP page

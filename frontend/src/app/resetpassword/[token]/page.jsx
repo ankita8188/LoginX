@@ -21,7 +21,7 @@ export default function ResetPassword() {
     try {
       console.log(token);
       const res = await fetch(
-        `http://localhost:5000/api/v1/user/password/reset/${token}`,
+        `https://authflow-kappa.vercel.app/api/v1/user/password/reset/${token}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
