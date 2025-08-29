@@ -1,0 +1,53 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# Build output
+dist/
+build/
+.next/
+out/
+.cache/
+coverage/
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+logs/*
+*.pid
+*.seed
+*.pid.lock
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.*
+*.env
+
+# Local config
+.vscode/
+.idea/
+*.swp
+
+# Production files
+*.local
+*.secret
+
+# Optional lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
