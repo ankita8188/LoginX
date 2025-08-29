@@ -11,6 +11,8 @@ const userSchema = new mongoose.Schema({
     maxlength: [32, "Password cannot have more than 32 characters"],
     select: false,
   },
+
+  
   googleId: { type: String },
   avatar: { type: String },
   phone: String,

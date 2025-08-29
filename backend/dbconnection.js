@@ -5,7 +5,7 @@ config({ path: "./.env" });
 
 const connection = async () => {
   try {
-    await mongoose.connect(process.env.url)
+    await mongoose.connect(process.env.URL)
     console.log("✅ Connected to MongoDB");
   } catch (err) {
     console.error("❌ MongoDB connection error:", err.message);
