@@ -7,12 +7,12 @@ export default function Dashboard() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        // ✅ Check if token is in URL (Google OAuth redirect)
+        // ✅ Get search params inside useEffect
+        const searchParams = useSearchParams();
         const urlToken = searchParams.get("token");
         if (urlToken) {
           localStorage.setItem("token", urlToken);
@@ -25,7 +25,7 @@ export default function Dashboard() {
         }
 
         const res = await axios.post(
-          "http://localhost:5000/api/v1/user/me",
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/user/me`,
           {},
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -41,24 +41,23 @@ export default function Dashboard() {
     };
 
     fetchUser();
-  }, [router, searchParams]);
+  }, [router]);
 
-  // ✅ Logout function
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem("token");
       if (!token) return;
 
       await axios.post(
-        "http://localhost:5000/api/v1/user/logout",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/user/logout`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
     } catch (error) {
       console.error("Logout failed:", error.response?.data || error.message);
     } finally {
-      localStorage.removeItem("token"); // clear token anyway
-      router.push("/login"); // redirect to login
+      localStorage.removeItem("token");
+      router.push("/login");
     }
   };
 
@@ -68,7 +67,6 @@ export default function Dashboard() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
       <div className="bg-gray-800/60 backdrop-blur-xl rounded-2xl shadow-2xl p-10 w-full max-w-md text-center border border-gray-700">
-        
         <h1 className="mt-6 text-3xl font-bold tracking-wide">
           Welcome, <span className="text-blue-400">{user.name}</span> 👋
         </h1>
