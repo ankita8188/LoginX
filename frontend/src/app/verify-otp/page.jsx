@@ -39,7 +39,7 @@ const VerifyOTPPage = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `https://authflow-kappa.vercel.app/api/v1/user/verifyOTP`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/user/verifyOTP`,
         { otp: enteredOTP }
       );
 

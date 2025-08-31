@@ -25,7 +25,7 @@ export default function Dashboard() {
         }
 
         const res = await axios.post(
-          `https://authflow-kappa.vercel.app//api/v1/user/me`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/user/me`,
           {},
           { headers: { Authorization: `Bearer ${token}` } }
         );

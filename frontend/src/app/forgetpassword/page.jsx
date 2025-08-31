@@ -25,7 +25,7 @@ export default function ForgotPassword() {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://authflow-kappa.vercel.app/api/v1/user/password/forgot",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/user/password/forgot`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
