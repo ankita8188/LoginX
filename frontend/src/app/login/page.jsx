@@ -29,7 +29,7 @@ const Page = () => {
       localStorage.setItem("token", res.data.token);
 
       // redirect to dashboard
-      router.push("/dashboard");
+      router.push("./dashboard");
     } catch (err) {
       console.error("Login Error:", err.response || err);
       alert(err.response?.data?.message || "Login failed");
