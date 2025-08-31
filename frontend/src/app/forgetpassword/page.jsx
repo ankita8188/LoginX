@@ -14,7 +14,7 @@ export default function ForgotPassword() {
         // redirect after 3 seconds
         router.push(`/resetpassword/${token}`);
 
-        // OR if API returns token -> router.push(`/resetpassword/${token}`)
+        // OR if API returns token -> router.push(`/resetpassword/${token}`)       jo link aaa rhi h usme localhost likjha aa rha h vha pe url da
       }, 3000);
 
       return () => clearTimeout(timer);
