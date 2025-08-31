@@ -3,19 +3,20 @@ import passport from "passport";
 
 const router = express.Router();
 
-// Google login
-router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+// Step 1: Redirect to Google for login
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 
-// Google callback
+// Step 2: Google callback
 router.get(
   "/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: `${process.env.FRONTEND_URL}/login`,
-    session: false,
-  }),
+  passport.authenticate("google", { session: false, failureRedirect: "/login" }),
   (req, res) => {
-    const token = req.user.token; // ✅ Now defined
-    res.redirect(`${process.env.FRONTEND_URL}/dashboard?token=${token}`);
+    // Redirect to frontend with token
+    const token = req.user.token;
+    res.redirect(`${process.env.FRONTEND_URL}/login-success?token=${token}`);
   }
 );
 

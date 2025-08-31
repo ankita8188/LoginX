@@ -8,7 +8,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: `${process.env.FRONTEND_URL}/auth/google/callback`,
+      callbackURL: `${process.env.BACKEND_URL}/auth/google/callback`, // ✅ backend endpoint
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -35,18 +35,20 @@ passport.use(
           { expiresIn: "1h" }
         );
 
-        // ✅ Attach token so you can access it in req.user
-        return done(null, { ...user._doc, token });
+        // Return user + token
+        return done(null, { id: user._id, email: user.email, token });
       } catch (error) {
-        done(error, false);
+        return done(error, false);
       }
     }
   )
 );
 
-// Optional: only needed if you're using session-based auth
-passport.serializeUser((user, done) => done(null, user.id));
-passport.deserializeUser(async (id, done) => {
-  const user = await User.findById(id);
-  done(null, user);
-});
+// ❌ Not needed if using JWT only
+// passport.serializeUser((user, done) => done(null, user.id));
+// passport.deserializeUser(async (id, done) => {
+//   const user = await User.findById(id);
+//   done(null, user);
+// });
+
+export default passport;
