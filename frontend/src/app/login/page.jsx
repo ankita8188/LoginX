@@ -128,7 +128,7 @@ const Page = () => {
           {/* Google Button */}
           <button
             onClick={() =>
-              (window.location.href = "https://authflow-kappa.vercel.app/auth/google")
+              (window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google`)
             }
             className="w-full flex items-center justify-center gap-3 rounded-xl bg-white py-3 text-gray-800 font-semibold hover:bg-gray-200 transition duration-200 shadow-md"
           >
